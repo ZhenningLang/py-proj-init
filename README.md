@@ -9,6 +9,8 @@ A simple Python3 project directory initializer.
 pip3 install py-proj-init
 # run
 py-proj-init YOUR-PROJECT-NAME
+# or jus
+py-proj-init
 ```
 
 ## What you will get
@@ -20,6 +22,7 @@ py-proj-init YOUR-PROJECT-NAME
     │   ├── data
     │   │   └── .gitkeep
     │   │
+    │   ├── __main__.py
     │   └── __init__.py
     │
     ├── tests

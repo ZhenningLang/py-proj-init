@@ -1,6 +1,7 @@
 import os
 import shutil
 import string
+import sys
 
 CURRENT_PATH = os.path.split(os.path.realpath(__file__))[0]
 TEMPLATE_PATH = os.path.join(CURRENT_PATH, 'data/templates')
@@ -44,8 +45,9 @@ def parse_names(proj_name: str) -> (str, str, str):
 
 
 def template_format(directory: str, namespace: str, package_name: str):
+    print(f'Check: {directory}')
     for name in os.listdir(directory):
-        if name.startswith('.'):
+        if not (name.endswith('.in') or name.endswith('.py') or name.endswith('.md')):
             continue
         path_name = os.path.join(directory, name)
         if os.path.isdir(path_name):
@@ -59,6 +61,10 @@ def template_format(directory: str, namespace: str, package_name: str):
                 f.write(content)
 
 
+def copy_ignored(_, names):
+    return [name for name in names if '.idea' in name or '__pycache__' in name]
+
+
 def gen(dest_dir: str, namespace: str, package_name: str):
     # copy directory structure from template dir to destination
     dest_full_path = os.path.join(dest_dir, namespace)
@@ -70,13 +76,16 @@ def gen(dest_dir: str, namespace: str, package_name: str):
         else:
             print('Exit')
             exit(0)
-    shutil.copytree(TEMPLATE_PATH, os.path.join(dest_dir, namespace))
+    shutil.copytree(TEMPLATE_PATH, os.path.join(dest_dir, namespace), ignore=copy_ignored)
     os.rename(os.path.join(dest_dir, namespace, '{package_name}'), os.path.join(dest_dir, namespace, package_name))
-    template_format(dest_dir, namespace, package_name)
+    template_format(os.path.join(dest_dir, namespace), namespace, package_name)
 
 
 def main():
-    proj_name = input("Project Name?: ")
+    if len(sys.argv) > 1:
+        proj_name = sys.argv[1]
+    else:
+        proj_name = input("Project Name?: ")
     dest_dir, namespace, package_name = parse_names(proj_name)
     print('-----')
     print('{:<18}{}{}'.format('Destination dir:', dest_dir, os.path.sep))

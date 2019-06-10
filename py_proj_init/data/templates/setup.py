@@ -16,7 +16,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/project/repository",
-    packages=setuptools.find_packages('./'),
+    packages=setuptools.find_packages(),
     python_requires='>=3.2',
     include_package_data=True,
     entry_points={
