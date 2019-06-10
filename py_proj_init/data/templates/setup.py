@@ -8,7 +8,7 @@ with open('requirements.txt', 'r') as f:
 
 
 setuptools.setup(
-    name="{proj_name}",
+    name="{package_name}",
     version="0.0.1",
     author="author",
     author_email="author@email",
@@ -21,7 +21,7 @@ setuptools.setup(
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            '{proj_name} = {proj_name}.__main__:main',
+            '{namespace} = {package_name}.__main__:main',
         ]
     },
     install_requires=install_requires,

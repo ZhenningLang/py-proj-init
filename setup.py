@@ -8,7 +8,7 @@ with open('requirements.txt', 'r') as f:
 
 
 setuptools.setup(
-    name="py-proj-init",
+    name="py_proj_init",
     version="0.0.1",
     author="ZhenningLang",
     author_email="zhenninglang@163.com",
@@ -21,7 +21,7 @@ setuptools.setup(
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'py-proj-init = py-proj-init.__main__:main',
+            'py-proj-init = py_proj_init.__main__:main',
         ]
     },
     install_requires=install_requires,

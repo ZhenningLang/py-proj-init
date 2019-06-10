@@ -15,8 +15,8 @@ py-proj-init YOUR-PROJECT-NAME
 
 ```text
 .
-└── [your-project-name]
-    ├── [your-project-name]
+└── [project namespace]
+    ├── [project package name]
     │   ├── data
     │   │   └── .gitkeep
     │   │
